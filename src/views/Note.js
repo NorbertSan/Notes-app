@@ -1,6 +1,6 @@
 import React from 'react';
-import UserPageTemplat from 'templates/UserPageTemplate';
+import UserPageTemplate from 'templates/UserPageTemplate';
 
-const Note = () => <div>Note page</div>;
+const Note = () => <UserPageTemplate />;
 
 export default Note;

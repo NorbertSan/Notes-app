@@ -61,7 +61,12 @@ const Sidebar = () => (
         icon={TwitterIcon}
       />
     </StyledIcons>
-    <StyledLogoutIcon icon={LogoutIcon} />
+    <StyledLogoutIcon
+      icon={LogoutIcon}
+      as={NavLink}
+      to="/login"
+      activeClass="active"
+    />
   </StyledWrapper>
 );
 export default Sidebar;

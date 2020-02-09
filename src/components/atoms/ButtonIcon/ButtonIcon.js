@@ -7,13 +7,13 @@ const ButtonIcon = styled.button`
   background: ${({ theme }) => theme.note} url(${({ icon }) => icon});
   border: none;
   outline: none;
-  border-radius: 50px;
+  border-radius: 20px;
   background-size: 60%;
   background-position: 50% 50%;
   background-repeat: no-repeat;
 
   &.active {
-    background: #fff;
+    background-color: #fff;
   }
 `;
 

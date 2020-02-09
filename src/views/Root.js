@@ -11,8 +11,8 @@ const Root = () => (
     <MainTemplate>
       <Switch>
         <Route exact path="/" component={Note} />
-        <Route path="/twitter" component={Twitter} />
-        <Route path="/article" component={Article} />
+        {/* <Route path="/twitter" component={Twitter} />
+        <Route path="/article" component={Article} /> */}
       </Switch>
     </MainTemplate>
   </BrowserRouter>
