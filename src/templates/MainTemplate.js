@@ -3,6 +3,8 @@ import GlobalStyle from 'theme/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import theme from 'theme/MainTheme';
 import { withRouter } from 'react-router-dom';
+import PageContext from 'context';
+import Sidebar from 'components/organisms/Sidebar/Sidebar';
 
 class MainTemplate extends React.Component {
   state = {
@@ -26,10 +28,10 @@ class MainTemplate extends React.Component {
     const { children } = this.props;
     return (
       <>
-        <ThemeProvider theme={theme}>
+        <PageContext.Provider value={this.state.currentPage}>
           <GlobalStyle />
-          {children}
-        </ThemeProvider>
+          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        </PageContext.Provider>
       </>
     );
   }

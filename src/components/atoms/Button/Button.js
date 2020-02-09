@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import withContext from 'hoc/withContext';
 
 const Button = styled.button`
   padding: 10px 15px;
@@ -20,4 +21,4 @@ const Button = styled.button`
     `};
 `;
 
-export default Button;
+export default withContext(Button);

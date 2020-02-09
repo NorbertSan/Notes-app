@@ -4,6 +4,7 @@ import Twitter from 'views/Twitter';
 import Article from 'views/Article';
 import Note from 'views/Note';
 import MainTemplate from 'templates/MainTemplate';
+import Sidebar from '../components/organisms/Sidebar/Sidebar';
 
 const Root = () => (
   <BrowserRouter>
