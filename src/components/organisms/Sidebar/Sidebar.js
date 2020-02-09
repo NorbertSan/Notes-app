@@ -14,5 +14,5 @@ const StyledWrapper = styled.div`
   width: 150px;
 `;
 
-const Sidebar = () => <StyledWrapper></StyledWrapper>;
+const Sidebar = () => <StyledWrapper>afsfa</StyledWrapper>;
 export default Sidebar;
