@@ -8,6 +8,7 @@ import LinkIcon from 'assets/icons/link.svg';
 import TwitterIcon from 'assets/icons/twitter.svg';
 import ClickIcon from 'assets/icons/click.svg';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 
 const StyledWrapper = styled.div`
   min-height: 360px;
@@ -117,28 +118,53 @@ const TwitterAvatar = styled.div`
   }
 `;
 
-const Card = ({ title, description, pagetype, articleUrl, twitterName }) => (
-  <StyledWrapper color={pagetype}>
-    <StyledHeader color={pagetype}>
-      <Heading as="h1">{title} </Heading>
-      <StyledParagraphInfo>Created 3days ago</StyledParagraphInfo>
-      {pagetype === 'twitter' && (
-        <TwitterAvatar
-          color={pagetype}
-          avatar={`https://twitter-avatar.now.sh/${twitterName}`}
-        />
-      )}
+class Card extends React.Component {
+  state = {
+    redirect: false,
+  };
 
-      {pagetype === 'article' && (
-        <LinkAvatar href={articleUrl} target="_blank" />
-      )}
-    </StyledHeader>
-    <StyledContent>
-      <Paragraph>{description.substr(0, 150)}...</Paragraph>
-      <Button secondary>Remove</Button>
-    </StyledContent>
-  </StyledWrapper>
-);
+  handleClickCard = () => {
+    this.setState({ redirect: true });
+  };
+
+  render() {
+    const {
+      title,
+      description,
+      pagetype,
+      articleUrl,
+      twitterName,
+      id,
+    } = this.props;
+
+    if (this.state.redirect) {
+      return <Redirect to={`/${pagetype}/${id}`} />;
+    }
+
+    return (
+      <StyledWrapper color={pagetype} onClick={this.handleClickCard}>
+        <StyledHeader color={pagetype}>
+          <Heading as="h1">{title} </Heading>
+          <StyledParagraphInfo>Created 3days ago</StyledParagraphInfo>
+          {pagetype === 'twitter' && (
+            <TwitterAvatar
+              color={pagetype}
+              avatar={`https://twitter-avatar.now.sh/${twitterName}`}
+            />
+          )}
+
+          {pagetype === 'article' && (
+            <LinkAvatar href={articleUrl} target="_blank" />
+          )}
+        </StyledHeader>
+        <StyledContent>
+          <Paragraph>{description.substr(0, 150)}...</Paragraph>
+          <Button secondary>Remove</Button>
+        </StyledContent>
+      </StyledWrapper>
+    );
+  }
+}
 
 Card.propTypes = {
   title: PropTypes.string.isRequired,
