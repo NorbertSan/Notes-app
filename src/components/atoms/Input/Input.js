@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import SearchIcon from 'assets/icons/search.svg';
 
 const Input = styled.input`
   padding: 10px 20px;
@@ -13,6 +14,16 @@ const Input = styled.input`
     letter-spacing: 1px;
     font-size: ${({ theme }) => theme.fontSize.xs};
   }
+
+  ${({ search }) =>
+    search &&
+    css`
+      padding-left: 30px;
+      background-image: url(${SearchIcon});
+      background-position: 10px 50%;
+      background-size: 12px;
+      background-repeat: no-repeat;
+    `}
 `;
 
 export default Input;
