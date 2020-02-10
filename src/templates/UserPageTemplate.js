@@ -9,4 +9,4 @@ const UserPageTemplate = ({ children }) => (
   </>
 );
 
-export default withContext(UserPageTemplate);
+export default UserPageTemplate;

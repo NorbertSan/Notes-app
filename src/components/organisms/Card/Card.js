@@ -8,7 +8,6 @@ const StyledWrapper = styled.div`
   min-height: 360px;
   display: grid;
   grid-template-rows: 1fr 3fr;
-  max-width: 400px;
   border-radius: 30px 30px 0 0;
   overflow: hidden;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
@@ -33,17 +32,20 @@ const StyledParagraph = styled(Paragraph)`
   font-weight: ${({ theme }) => theme.bold};
   cursor: pointer;
 `;
+const StyledParagraphInfo = styled(Paragraph)`
+  font-size: ${({ theme }) => theme.fontSize.xxs};
+  margin: 0;
+`;
 
-const Card = () => (
+const Card = ({ title, description }) => (
   <StyledWrapper>
     <StyledHeader>
-      <Heading as="h1">New features in css </Heading>
-      <Paragraph>Created 3days ago</Paragraph>
+      <Heading as="h1">{title} </Heading>
+      <StyledParagraphInfo>Created 3days ago</StyledParagraphInfo>
     </StyledHeader>
     <StyledContent>
       <Paragraph>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
-        unde qui tempore, beatae ea illum.
+        {description}
         <StyledParagraph>...read more</StyledParagraph>
       </Paragraph>
       <Button secondary>Remove</Button>
