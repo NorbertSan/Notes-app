@@ -16,28 +16,28 @@ const Twitters = [
     twitterName: 'hello_roman',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 1,
+    id: 2,
   },
   {
     title: 'hello roman',
     twitterName: 'hello_roman',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 1,
+    id: 3,
   },
   {
     title: 'hello roman',
     twitterName: 'hello_roman',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 1,
+    id: 4,
   },
   {
     title: 'hello roman',
     twitterName: 'hello_roman',
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 1,
+    id: 5,
   },
 ];
 

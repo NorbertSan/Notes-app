@@ -88,7 +88,7 @@ const LinkAvatar = styled.a`
   height: 50px;
 `;
 
-const TwitterAvatar = styled.div`
+const TwitterAvatar = styled.a`
   background: url(${({ avatar }) => avatar}) no-repeat center center / cover;
   position: absolute;
   width: 80px;
@@ -150,6 +150,8 @@ class Card extends React.Component {
             <TwitterAvatar
               color={pagetype}
               avatar={`https://twitter-avatar.now.sh/${twitterName}`}
+              href={`https://twitter.com/${twitterName}`}
+              target="_blank"
             />
           )}
 

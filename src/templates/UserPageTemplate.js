@@ -1,16 +1,52 @@
 import React from 'react';
 import Sidebar from 'components/organisms/Sidebar/Sidebar';
+import withContext from 'hoc/withContext';
 import styled from 'styled-components';
+import AddCard from 'components/organisms/AddCard/AddCard';
+import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
+import PlusIcon from 'assets/icons/plus.svg';
+import CancelIcon from 'assets/icons/cancel.svg';
 
 const StyledWrapper = styled.div`
   margin: 150px 50px;
 `;
+const StyledAddIcon = styled(ButtonIcon)`
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  cursor: pointer;
+  background-color: ${({ color, theme }) => theme[color]};
+  z-index: 999;
+`;
 
-const UserPageTemplate = ({ children }) => (
-  <StyledWrapper>
-    {children}
-    <Sidebar />
-  </StyledWrapper>
-);
+class UserPageTemplate extends React.Component {
+  state = {
+    isOpen: false,
+  };
 
-export default UserPageTemplate;
+  toggleAddPanel = () => {
+    this.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }));
+  };
+
+  render() {
+    const { children, pagetype } = this.props;
+    return (
+      <>
+        {this.state.isOpen && <AddCard />}
+        <StyledAddIcon
+          icon={this.state.isOpen ? CancelIcon : PlusIcon}
+          color={pagetype}
+          onClick={this.toggleAddPanel}
+        />
+        <StyledWrapper>
+          {children}
+          <Sidebar />
+        </StyledWrapper>
+      </>
+    );
+  }
+}
+
+export default withContext(UserPageTemplate);

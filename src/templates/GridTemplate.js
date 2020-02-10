@@ -15,7 +15,7 @@ const StyleInput = styled(Input)`
   top: -100px;
   left: 0;
   width: 300px;
-  z-index: 9999;
+  z-index: 100;
 `;
 
 const GridTemplate = ({ children, pagetype }) => (

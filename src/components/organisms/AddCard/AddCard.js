@@ -8,13 +8,15 @@ import Button from 'components/atoms/Button/Button';
 
 const StyledWrapper = styled.div`
   height: 100vh;
-  width: 500px;
+  width: 550px;
   top: 0;
   right: 0;
   position: fixed;
-  border-left: 2px solid ${({ pagetype, theme }) => theme.note};
+  border-left: 5px solid ${({ color, theme }) => theme[color]};
   padding: 100px 50px;
-  box-shadow: 0 0 10px ${({ theme }) => theme.note};
+  box-shadow: 0 0 10px ${({ color, theme }) => theme[color]};
+  background-color: #fff;
+  z-index: 999;
 `;
 const StyledForm = styled(Form)`
   display: flex;
@@ -46,9 +48,15 @@ const WrapperRadio = styled.div`
   margin: 10px 0;
 `;
 
+const descriptions = {
+  note: 'new note',
+  twitter: 'your favourite twitter account',
+  article: 'new interesting article',
+};
+
 const AddCard = ({ pagetype }) => (
-  <StyledWrapper>
-    <StyledHeading>Add note</StyledHeading>
+  <StyledWrapper color={pagetype}>
+    <StyledHeading>{`Add ${descriptions[pagetype]}`}</StyledHeading>
     <WrapperRadio>
       <label htmlFor="note">
         <input type="radio" name="pagetype" value="note" checked />
@@ -126,7 +134,7 @@ const AddCard = ({ pagetype }) => (
             onBlur={handleBlur}
             value={values.content}
           />
-          <Button>Add Note</Button>
+          <Button>Add {pagetype}</Button>
         </StyledForm>
       )}
     </Formik>

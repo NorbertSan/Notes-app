@@ -27,7 +27,6 @@ class MainTemplate extends React.Component {
     if (this.state.pageContext !== currentPage) {
       this.setState({ pageContext: currentPage });
     }
-    console.log(this.state.pageContext);
   }
 
   render() {
