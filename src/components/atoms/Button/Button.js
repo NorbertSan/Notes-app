@@ -12,6 +12,7 @@ const Button = styled.button`
   letter-spacing: 1px;
   font-weight: ${({ theme }) => theme.bold};
   font-size: ${({ theme }) => theme.fontSize.s};
+  cursor: pointer;
   ${({ secondary }) =>
     secondary &&
     css`

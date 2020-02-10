@@ -7,10 +7,11 @@ import TwitterIcon from 'assets/icons/twitter.svg';
 import LogoIcon from 'assets/icons/logo.svg';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import { NavLink } from 'react-router-dom';
+import withContext from 'hoc/withContext';
 
 const StyledWrapper = styled.div`
   height: 100vh;
-  background: ${({ theme }) => theme.note};
+  background: ${({ pagetype, theme }) => theme[pagetype]};
   position: fixed;
   top: 0;
   left: 0;
@@ -38,9 +39,9 @@ const StyledLogoutIcon = styled(ButtonIcon)`
   margin-top: auto;
 `;
 
-const Sidebar = () => (
-  <StyledWrapper>
-    <StyledLogo />
+const Sidebar = ({ pagetype }) => (
+  <StyledWrapper pagetype={pagetype}>
+    <StyledLogo as={NavLink} to="/" />
     <StyledIcons>
       <ButtonIcon
         as={NavLink}
@@ -65,8 +66,8 @@ const Sidebar = () => (
       icon={LogoutIcon}
       as={NavLink}
       to="/login"
-      activeClass="active"
+      activeclass="active"
     />
   </StyledWrapper>
 );
-export default Sidebar;
+export default withContext(Sidebar);

@@ -11,7 +11,7 @@ const Input = styled.input`
     color: ${({ theme }) => theme.grey300};
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: ${({ theme }) => theme.fontSize.s};
+    font-size: ${({ theme }) => theme.fontSize.xs};
   }
 `;
 

@@ -5,6 +5,7 @@ import withContext from 'hoc/withContext';
 const UserPageTemplate = ({ children }) => (
   <>
     <Sidebar />
+    {children}
   </>
 );
 

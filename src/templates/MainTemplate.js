@@ -4,7 +4,6 @@ import { ThemeProvider } from 'styled-components';
 import theme from 'theme/MainTheme';
 import { withRouter } from 'react-router-dom';
 import PageContext from 'context';
-import Sidebar from 'components/organisms/Sidebar/Sidebar';
 
 class MainTemplate extends React.Component {
   state = {
@@ -15,20 +14,26 @@ class MainTemplate extends React.Component {
     this.setPageType();
   }
 
+  componentDidUpdate() {
+    this.setPageType();
+  }
+
   setPageType() {
     const pageTypes = ['note', 'twitter', 'article'];
     const {
       location: { pathname },
     } = this.props;
     const [currentPage] = pageTypes.filter(item => pathname.includes(item));
-    this.setState({ pageContext: currentPage });
+    if (this.state.pageContext !== currentPage) {
+      this.setState({ pageContext: currentPage });
+    }
   }
 
   render() {
     const { children } = this.props;
     return (
       <>
-        <PageContext.Provider value={this.state.currentPage}>
+        <PageContext.Provider value={this.state.pageContext}>
           <GlobalStyle />
           <ThemeProvider theme={theme}>{children}</ThemeProvider>
         </PageContext.Provider>

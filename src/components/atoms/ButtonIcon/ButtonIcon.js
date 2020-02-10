@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import withContext from 'hoc/withContext';
 
 const ButtonIcon = styled.button`
   width: 45px;
   height: 45px;
-  background: ${({ theme }) => theme.note} url(${({ icon }) => icon});
+  background: ${({ pageType, theme }) => theme.pageType}
+    url(${({ icon }) => icon});
   border: none;
   outline: none;
   border-radius: 20px;
@@ -17,4 +19,4 @@ const ButtonIcon = styled.button`
   }
 `;
 
-export default ButtonIcon;
+export default withContext(ButtonIcon);
