@@ -1,14 +1,15 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
 import withContext from 'hoc/withContext';
 
 const Button = styled.button`
   padding: 10px 15px;
-  background: ${({ theme }) => theme.note};
+  background: ${({ pagetype, theme }) => theme[pagetype]};
   border: none;
   outline: none;
   border-radius: 20px;
   text-transform: uppercase;
+  text-decoration: none;
+  color: black;
   letter-spacing: 1px;
   font-weight: ${({ theme }) => theme.bold};
   font-size: ${({ theme }) => theme.fontSize.s};

@@ -7,6 +7,7 @@ import withContext from 'hoc/withContext';
 import LinkIcon from 'assets/icons/link.svg';
 import TwitterIcon from 'assets/icons/twitter.svg';
 import ClickIcon from 'assets/icons/click.svg';
+import PropTypes from 'prop-types';
 
 const StyledWrapper = styled.div`
   min-height: 360px;
@@ -66,14 +67,7 @@ const StyledContent = styled.div`
   justify-content: space-around;
   line-height: 1.5;
 `;
-const StyledButton = styled(Button)`
-  margin: auto 0;
-`;
-const StyledParagraph = styled(Paragraph)`
-  display: inline;
-  font-weight: ${({ theme }) => theme.bold};
-  cursor: pointer;
-`;
+
 const StyledParagraphInfo = styled(Paragraph)`
   font-size: ${({ theme }) => theme.fontSize.xxs};
   margin: 0;
@@ -104,7 +98,7 @@ const TwitterAvatar = styled.div`
   border: 5px solid ${({ color, theme }) => theme[color]};
   &::after {
     content: '';
-    background: rgba(255, 255, 255, 0.8) url(${TwitterIcon}) center no-repeat;
+    background: rgba(255, 255, 255, 0.9) url(${TwitterIcon}) center no-repeat;
     background-size: 60%;
     z-index: 999;
     position: absolute;
@@ -145,5 +139,9 @@ const Card = ({ title, description, pagetype, articleUrl, twitterName }) => (
     </StyledContent>
   </StyledWrapper>
 );
+
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+};
 
 export default withContext(Card);

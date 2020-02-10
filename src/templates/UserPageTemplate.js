@@ -1,12 +1,16 @@
 import React from 'react';
 import Sidebar from 'components/organisms/Sidebar/Sidebar';
-import withContext from 'hoc/withContext';
+import styled from 'styled-components';
+
+const StyledWrapper = styled.div`
+  margin: 150px 50px;
+`;
 
 const UserPageTemplate = ({ children }) => (
-  <>
-    <Sidebar />
+  <StyledWrapper>
     {children}
-  </>
+    <Sidebar />
+  </StyledWrapper>
 );
 
 export default UserPageTemplate;
