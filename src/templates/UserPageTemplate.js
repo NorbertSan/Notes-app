@@ -15,7 +15,7 @@ const StyledAddIcon = styled(ButtonIcon)`
   right: 25px;
   bottom: 25px;
   cursor: pointer;
-  background-color: ${({ color, theme }) => theme[color]};
+  background-color: grey;
   z-index: 999;
 `;
 
@@ -34,7 +34,7 @@ class UserPageTemplate extends React.Component {
     const { children, pagetype } = this.props;
     return (
       <>
-        {this.state.isOpen && <AddCard />}
+        <AddCard isVisible={this.state.isOpen} />
         <StyledAddIcon
           icon={this.state.isOpen ? CancelIcon : PlusIcon}
           color={pagetype}
