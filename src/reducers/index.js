@@ -1,4 +1,5 @@
 const initialState = {
+  searched: [],
   note: [
     {
       title: 'hello dev ed',
@@ -114,6 +115,12 @@ const rootReducer = (state = initialState, action) => {
           action.payload.newItem,
         ],
       };
+
+    case 'SEARCH_ITEMS': {
+      const { value, itemType } = action.payload;
+      const items = state[itemType].filter(item => item.title.includes(value));
+      return { ...state, searched: items };
+    }
 
     default:
       return state;

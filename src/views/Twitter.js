@@ -4,11 +4,11 @@ import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/organisms/Card/Card';
 import { connect } from 'react-redux';
 
-const Twitter = ({ twitter }) => (
+const Twitter = ({ searched }) => (
   <>
     <UserPageTemplate>
       <GridTemplate>
-        {twitter.map(item => (
+        {searched.map(item => (
           <Card
             title={item.title}
             description={item.description}
@@ -22,6 +22,6 @@ const Twitter = ({ twitter }) => (
   </>
 );
 
-const mapStateToProps = ({ twitter }) => ({ twitter });
+const mapStateToProps = ({ searched }) => ({ searched });
 
 export default connect(mapStateToProps)(Twitter);

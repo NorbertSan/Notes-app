@@ -61,7 +61,6 @@ const StyledButton = styled(Button)`
 class DetailsPage extends React.Component {
   render() {
     const { pagetype, item } = this.props;
-    console.log(this.props);
     return (
       <>
         <UserPageTemplate>

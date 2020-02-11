@@ -4,23 +4,21 @@ import Card from 'components/organisms/Card/Card';
 import GridTemplate from 'templates/GridTemplate';
 import { connect } from 'react-redux';
 
-const Note = ({ note }) => (
-  <>
-    <UserPageTemplate>
-      <GridTemplate>
-        {note.map(item => (
-          <Card
-            title={item.title}
-            description={item.description}
-            id={item.id}
-            key={item.id}
-          />
-        ))}
-      </GridTemplate>
-    </UserPageTemplate>
-  </>
+const Note = ({ searched }) => (
+  <UserPageTemplate>
+    <GridTemplate>
+      {searched.map(item => (
+        <Card
+          title={item.title}
+          description={item.description}
+          id={item.id}
+          key={item.id}
+        />
+      ))}
+    </GridTemplate>
+  </UserPageTemplate>
 );
 
-const mapStateToProps = ({ note }) => ({ note });
+const mapPropsToState = ({ searched }) => ({ searched });
 
-export default connect(mapStateToProps)(Note);
+export default connect(mapPropsToState)(Note);

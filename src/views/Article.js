@@ -4,11 +4,11 @@ import Card from 'components/organisms/Card/Card';
 import GridTemplate from 'templates/GridTemplate';
 import { connect } from 'react-redux';
 
-const Article = ({ article }) => (
+const Article = ({ searched }) => (
   <>
     <UserPageTemplate>
       <GridTemplate>
-        {article.map(item => (
+        {searched.map(item => (
           <Card
             title={item.title}
             description={item.description}
@@ -22,6 +22,6 @@ const Article = ({ article }) => (
   </>
 );
 
-const mapStateToProps = ({ article }) => ({ article });
+const mapStateToProps = ({ searched }) => ({ searched });
 
 export default connect(mapStateToProps)(Article);

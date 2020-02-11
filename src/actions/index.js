@@ -24,3 +24,11 @@ export const addItem = (itemType, content) => {
     },
   };
 };
+
+export const searchItems = (itemType, value) => ({
+  type: 'SEARCH_ITEMS',
+  payload: {
+    itemType,
+    value,
+  },
+});
