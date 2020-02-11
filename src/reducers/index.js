@@ -122,6 +122,26 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, searched: items };
     }
 
+    case 'EDIT_ITEM': {
+      const { content, id, itemType } = action.payload;
+      return {
+        ...state,
+        [itemType]: [
+          ...state[itemType].map(item =>
+            item.id === id
+              ? {
+                  ...item,
+                  title: content.title,
+                  description: content.description,
+                  articleUrl: content.articleUrl,
+                  twitterName: content.twitterName,
+                }
+              : item,
+          ),
+        ],
+      };
+    }
+
     default:
       return state;
   }

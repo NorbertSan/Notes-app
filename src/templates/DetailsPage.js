@@ -72,8 +72,20 @@ const StyledButton = styled(Button)`
 `;
 
 class DetailsPage extends React.Component {
+  state = {
+    // edit form
+    isOpen: false,
+  };
+
+  toggleEditForm(self) {
+    self.setState(prevState => ({
+      isOpen: !prevState.isOpen,
+    }));
+  }
+
   render() {
     const { pagetype, item } = this.props;
+    const toggleEditForm = this.toggleEditForm;
     return (
       <>
         <UserPageTemplate>
@@ -108,10 +120,12 @@ class DetailsPage extends React.Component {
                 <Button as={Link} to={`/${pagetype}`}>
                   Close / Saved
                 </Button>
-                <StyledButton>Edit</StyledButton>
+                <StyledButton onClick={() => toggleEditForm(this)}>
+                  Edit
+                </StyledButton>
               </WrapperButtons>
             </StyledWrapper>
-            <EditForm />
+            {this.state.isOpen && <EditForm item={item} />}
           </StyledOuterWrapper>
         </UserPageTemplate>
       </>

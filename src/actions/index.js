@@ -32,3 +32,12 @@ export const searchItems = (itemType, value) => ({
     value,
   },
 });
+
+export const editItem = (itemType, id, content) => ({
+  type: 'EDIT_ITEM',
+  payload: {
+    itemType,
+    id,
+    content,
+  },
+});
