@@ -9,7 +9,8 @@ import TwitterIcon from 'assets/icons/twitter.svg';
 import ClickIcon from 'assets/icons/click.svg';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import { removeItem } from 'actions';
+import { removeItem as removeItemAction } from 'actions';
+import { connect } from 'react-redux';
 
 const StyledWrapper = styled.div`
   min-height: 360px;
@@ -89,6 +90,14 @@ const LinkAvatar = styled.a`
   height: 50px;
 `;
 
+const StyledRemoveButton = styled(Button)`
+  transition: all 0.3s ease;
+  &:hover {
+    transform: scale(1.05);
+    opacity: 0.5;
+  }
+`;
+
 const TwitterAvatar = styled.a`
   background: url(${({ avatar }) => avatar}) no-repeat center center / cover;
   position: absolute;
@@ -136,6 +145,7 @@ class Card extends React.Component {
       articleUrl,
       twitterName,
       id,
+      removeItem,
     } = this.props;
 
     if (this.state.redirect) {
@@ -162,7 +172,12 @@ class Card extends React.Component {
         </StyledHeader>
         <StyledContent>
           <Paragraph>{description.substr(0, 150)}...</Paragraph>
-          <Button secondary>Remove</Button>
+          <StyledRemoveButton
+            onClick={() => removeItem(pagetype, id)}
+            secondary
+          >
+            Remove
+          </StyledRemoveButton>
         </StyledContent>
       </StyledWrapper>
     );
@@ -173,4 +188,8 @@ Card.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default withContext(Card);
+const mapDispatchToProps = dispatch => ({
+  removeItem: (itemType, id) => dispatch(removeItemAction(itemType, id)),
+});
+
+export default connect(null, mapDispatchToProps)(withContext(Card));

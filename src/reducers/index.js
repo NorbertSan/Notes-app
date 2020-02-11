@@ -1,5 +1,5 @@
 const initialState = {
-  notes: [
+  note: [
     {
       title: 'hello roman',
       description:
@@ -25,7 +25,7 @@ const initialState = {
       id: 4,
     },
   ],
-  twitters: [
+  twitter: [
     {
       title: 'hello roman',
       twitterName: 'hello_roman',
@@ -62,7 +62,7 @@ const initialState = {
       id: 5,
     },
   ],
-  articles: [
+  article: [
     {
       title: 'hello roman',
       description:
@@ -97,7 +97,14 @@ const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'REMOVE_ITEM':
       console.log(action);
-      return state;
+      return {
+        ...state,
+        [action.payload.itemType]: [
+          ...state[action.payload.itemType].filter(
+            item => item.id !== action.payload.id,
+          ),
+        ],
+      };
     default:
       return state;
   }
