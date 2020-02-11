@@ -70,10 +70,6 @@ class AddCard extends React.Component {
     }
   };
 
-  handleClickRadioInput = e => {
-    this.setState({ itemType: e.target.value });
-  };
-
   render() {
     const { pagetype, isVisible, addItem, closePanelFn } = this.props;
     return (
