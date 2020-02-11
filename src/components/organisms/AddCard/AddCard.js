@@ -5,6 +5,8 @@ import Heading from 'components/atoms/Heading/Heading';
 import { Formik, Form } from 'formik';
 import withContext from 'hoc/withContext';
 import Button from 'components/atoms/Button/Button';
+import { addItem as addItemAction } from 'actions';
+import { connect } from 'react-redux';
 
 const StyledWrapper = styled.div`
   height: 100vh;
@@ -73,7 +75,7 @@ class AddCard extends React.Component {
   };
 
   render() {
-    const { pagetype, isVisible } = this.props;
+    const { pagetype, isVisible, addItem } = this.props;
     return (
       <StyledWrapper color={this.state.itemType} isVisible={isVisible}>
         <StyledHeading>{descriptions[this.state.itemType]}</StyledHeading>
@@ -82,13 +84,17 @@ class AddCard extends React.Component {
             title: '',
             articleUrl: '',
             twitterName: '',
-            content: '',
+            description: '',
+          }}
+          validate={values => {
+            const errors = {};
+            if (!values.title) {
+              errors.title = 'Required';
+            }
+            return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 500);
+            addItem(pagetype, values);
           }}
         >
           {({
@@ -109,6 +115,7 @@ class AddCard extends React.Component {
                 onBlur={handleBlur}
                 value={values.title}
               />
+              {errors.title && touched.title && errors.title}
               {this.state.itemType === 'twitter' && (
                 <StyledInput
                   placeholder="twitter account name"
@@ -140,7 +147,7 @@ class AddCard extends React.Component {
                 onBlur={handleBlur}
                 value={values.content}
               />
-              <StyledButton color={this.state.itemType}>
+              <StyledButton type="submit" color={this.state.itemType}>
                 Add {this.state.itemType}
               </StyledButton>
             </StyledForm>
@@ -151,4 +158,8 @@ class AddCard extends React.Component {
   }
 }
 
-export default withContext(AddCard);
+const mapDispatchToProps = dispatch => ({
+  addItem: (pagetype, content) => dispatch(addItemAction(pagetype, content)),
+});
+
+export default connect(null, mapDispatchToProps)(withContext(AddCard));
