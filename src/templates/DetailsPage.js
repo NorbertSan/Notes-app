@@ -6,6 +6,8 @@ import Button from 'components/atoms/Button/Button';
 import { Link } from 'react-router-dom';
 import withContext from 'hoc/withContext';
 import UserPageTemplate from 'templates/UserPageTemplate';
+import { connect } from 'react-redux';
+import { getItem as getItemAction } from 'actions';
 
 const StyledWrapper = styled.div`
   max-width: 500px;
@@ -22,27 +24,39 @@ const StyledParagraph = styled(Paragraph)`
   margin-bottom: 50px;
 `;
 
-const DetailsPage = ({ pagetype }) => (
-  <>
-    <UserPageTemplate>
-      <StyledWrapper>
-        <StyledHeader>
-          <Heading>Lorem ipsum dolor sit.</Heading>
-          <Paragraph>3 days ago</Paragraph>
-        </StyledHeader>
-        <StyledParagraph>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga eveniet
-          in ab temporibus laboriosam veritatis eum obcaecati voluptas hic
-          iusto! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga
-          eveniet in ab temporibus laboriosam veritatis eum obcaecati voluptas
-          hic iusto!
-        </StyledParagraph>
-        <Button as={Link} to={`/${pagetype}`}>
-          Close / Saved
-        </Button>
-      </StyledWrapper>
-    </UserPageTemplate>
-  </>
-);
+class DetailsPage extends React.Component {
+  render() {
+    const { pagetype, item } = this.props;
+    console.log(this.props);
+    return (
+      <>
+        <UserPageTemplate>
+          <StyledWrapper>
+            <StyledHeader>
+              <Heading>{item.title}</Heading>
+              <Paragraph>3 days ago</Paragraph>
+            </StyledHeader>
+            <StyledParagraph>{item.description}</StyledParagraph>
+            <Button as={Link} to={`/${pagetype}`}>
+              Close / Saved
+            </Button>
+          </StyledWrapper>
+        </UserPageTemplate>
+      </>
+    );
+  }
+}
 
-export default withContext(DetailsPage);
+const mapStateToProps = (store, ownProps) => {
+  const pageTypes = ['note', 'twitter', 'article'];
+  const {
+    location: { pathname },
+  } = ownProps;
+  const [currentPage] = pageTypes.filter(item => pathname.includes(item));
+  return {
+    item: store[currentPage].filter(
+      item => item.id === ownProps.match.params.id,
+    )[0],
+  };
+};
+export default connect(mapStateToProps)(withContext(DetailsPage));

@@ -7,6 +7,7 @@ import withContext from 'hoc/withContext';
 import LinkIcon from 'assets/icons/link.svg';
 import TwitterIcon from 'assets/icons/twitter.svg';
 import ClickIcon from 'assets/icons/click.svg';
+import UserIcon from 'assets/icons/user.svg';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { removeItem as removeItemAction } from 'actions';
@@ -100,6 +101,8 @@ const StyledRemoveButton = styled(Button)`
 
 const TwitterAvatar = styled.a`
   background: url(${({ avatar }) => avatar}) no-repeat center center / cover;
+  background-color: #fff;
+  background-size: 100%;
   position: absolute;
   width: 80px;
   height: 80px;
@@ -149,7 +152,7 @@ class Card extends React.Component {
     } = this.props;
 
     if (this.state.redirect) {
-      return <Redirect to={`/${pagetype}/${id}`} />;
+      return <Redirect id={id} to={`/${pagetype}/${id}`} />;
     }
 
     return (
@@ -160,7 +163,11 @@ class Card extends React.Component {
           {pagetype === 'twitter' && (
             <TwitterAvatar
               color={pagetype}
-              avatar={`https://twitter-avatar.now.sh/${twitterName}`}
+              avatar={
+                twitterName
+                  ? `https://twitter-avatar.now.sh/${twitterName}`
+                  : UserIcon
+              }
               href={`https://twitter.com/${twitterName}`}
               target="_blank"
             />
@@ -191,5 +198,20 @@ Card.propTypes = {
 const mapDispatchToProps = dispatch => ({
   removeItem: (itemType, id) => dispatch(removeItemAction(itemType, id)),
 });
+
+Card.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  pagetype: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  removeItem: PropTypes.func.isRequired,
+  articleUrl: PropTypes.string,
+  twitterName: PropTypes.string,
+};
+
+Card.defaultProps = {
+  articleUrl: null,
+  twitterName: null,
+};
 
 export default connect(null, mapDispatchToProps)(withContext(Card));

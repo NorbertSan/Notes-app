@@ -34,7 +34,10 @@ class UserPageTemplate extends React.Component {
     const { children, pagetype } = this.props;
     return (
       <>
-        <AddCard isVisible={this.state.isOpen} />
+        <AddCard
+          closePanelFn={this.toggleAddPanel}
+          isVisible={this.state.isOpen}
+        />
         <StyledAddIcon
           icon={this.state.isOpen ? CancelIcon : PlusIcon}
           color={pagetype}

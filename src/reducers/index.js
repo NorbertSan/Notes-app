@@ -1,28 +1,28 @@
 const initialState = {
   note: [
     {
-      title: 'hello roman',
+      title: 'hello dev ed',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-      id: 1,
+      id: '1',
     },
     {
       title: 'hello roman',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-      id: 2,
+      id: '2',
     },
     {
       title: 'hello roman',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-      id: 3,
+      id: '3',
     },
     {
       title: 'hello roman',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-      id: 4,
+      id: '4',
     },
   ],
   twitter: [
@@ -31,35 +31,35 @@ const initialState = {
       twitterName: 'hello_roman',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-      id: 1,
+      id: '1',
     },
     {
       title: 'hello roman',
       twitterName: 'hello_roman',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-      id: 2,
+      id: '2',
     },
     {
       title: 'hello roman',
       twitterName: 'hello_roman',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-      id: 3,
+      id: '3',
     },
     {
       title: 'hello roman',
       twitterName: 'hello_roman',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-      id: 4,
+      id: '4',
     },
     {
       title: 'hello roman',
       twitterName: 'hello_roman',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-      id: 5,
+      id: '5',
     },
   ],
   article: [
@@ -67,28 +67,28 @@ const initialState = {
       title: 'hello roman',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-      id: 1,
+      id: '1',
       articleUrl: 'https://google.com',
     },
     {
       title: 'hello roman',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-      id: 2,
+      id: '2',
       articleUrl: 'https://google.com',
     },
     {
       title: 'hello roman',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-      id: 3,
+      id: '3',
       articleUrl: 'https://google.com',
     },
     {
       title: 'hello roman',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-      id: 4,
+      id: '4',
       articleUrl: 'https://google.com',
     },
   ],
@@ -107,13 +107,14 @@ const rootReducer = (state = initialState, action) => {
       };
 
     case 'ADD_ITEM':
-      console.log(action);
       return {
+        ...state,
         [action.payload.itemType]: [
           ...state[action.payload.itemType],
           action.payload.newItem,
         ],
       };
+
     default:
       return state;
   }

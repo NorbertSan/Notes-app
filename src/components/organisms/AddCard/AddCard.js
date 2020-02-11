@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import Input from 'components/atoms/Input/Input';
 import Heading from 'components/atoms/Heading/Heading';
-import { Formik, Form } from 'formik';
+import { Formik, Form, resetForm } from 'formik';
 import withContext from 'hoc/withContext';
 import Button from 'components/atoms/Button/Button';
 import { addItem as addItemAction } from 'actions';
@@ -75,7 +75,7 @@ class AddCard extends React.Component {
   };
 
   render() {
-    const { pagetype, isVisible, addItem } = this.props;
+    const { pagetype, isVisible, addItem, closePanelFn } = this.props;
     return (
       <StyledWrapper color={this.state.itemType} isVisible={isVisible}>
         <StyledHeading>{descriptions[this.state.itemType]}</StyledHeading>
@@ -93,7 +93,9 @@ class AddCard extends React.Component {
             }
             return errors;
           }}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={(values, { resetForm }) => {
+            setTimeout(() => closePanelFn(), 700);
+            resetForm();
             addItem(pagetype, values);
           }}
         >
@@ -142,10 +144,10 @@ class AddCard extends React.Component {
                 as="textarea"
                 placeholder="description"
                 type="text"
-                name="content"
+                name="description"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.content}
+                value={values.description}
               />
               <StyledButton type="submit" color={this.state.itemType}>
                 Add {this.state.itemType}
