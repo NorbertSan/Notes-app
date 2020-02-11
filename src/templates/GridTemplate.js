@@ -37,7 +37,7 @@ class GridTemplate extends React.Component {
       <>
         <StyledForm>
           <StyleInput
-            placeholder={`search ${pagetype}`}
+            placeholder={`search ${pagetype} by title`}
             search
             onChange={e => searchItemsAction(pagetype, e.target.value)}
             value={value}

@@ -202,7 +202,7 @@ const mapDispatchToProps = dispatch => ({
 Card.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  pagetype: PropTypes.string.isRequired,
+  pagetype: PropTypes.string,
   id: PropTypes.string.isRequired,
   removeItem: PropTypes.func.isRequired,
   articleUrl: PropTypes.string,
@@ -212,6 +212,7 @@ Card.propTypes = {
 Card.defaultProps = {
   articleUrl: null,
   twitterName: null,
+  pagetype: 'note',
 };
 
 export default connect(null, mapDispatchToProps)(withContext(Card));

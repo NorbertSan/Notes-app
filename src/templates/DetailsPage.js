@@ -3,18 +3,31 @@ import styled from 'styled-components';
 import Heading from 'components/atoms/Heading/Heading';
 import Paragraph from 'components/atoms/Paragraph/Paragraph';
 import Button from 'components/atoms/Button/Button';
+import EditForm from 'components/molecules/EditForm/EditForm';
 import { Link } from 'react-router-dom';
 import withContext from 'hoc/withContext';
 import UserPageTemplate from 'templates/UserPageTemplate';
 import { connect } from 'react-redux';
 import UserIcon from 'assets/icons/user.svg';
 
+const StyledOuterWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 20px;
+  position: relative;
+  top: -50px;
+`;
+
 const StyledWrapper = styled.div`
-  max-width: 500px;
+  grid-column: 1/2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px ${({ color, theme }) => theme[color]};
+  padding: 50px;
+  min-height: 550px;
 `;
 const StyledHeader = styled.div`
   margin-bottom: 100px;
@@ -64,39 +77,42 @@ class DetailsPage extends React.Component {
     return (
       <>
         <UserPageTemplate>
-          <StyledWrapper>
-            <StyledHeader>
-              {pagetype === 'twitter' && (
-                <TwitterAvatar
-                  avatar={
-                    item.twitterName
-                      ? `https://twitter-avatar.now.sh/${item.twitterName}`
-                      : UserIcon
-                  }
-                />
-              )}
-              <Heading>{item.title}</Heading>
-              <Paragraph>3 days ago</Paragraph>
-            </StyledHeader>
-            <StyledParagraph>
-              {item.description}
-              {pagetype === 'article' && (
-                <StyledParagraphInfo
-                  target="_blank"
-                  href={item.articleUrl}
-                  as="a"
-                >
-                  Go to article
-                </StyledParagraphInfo>
-              )}
-            </StyledParagraph>
-            <WrapperButtons>
-              <Button as={Link} to={`/${pagetype}`}>
-                Close / Saved
-              </Button>
-              <StyledButton>Edit</StyledButton>
-            </WrapperButtons>
-          </StyledWrapper>
+          <StyledOuterWrapper>
+            <StyledWrapper color={pagetype}>
+              <StyledHeader>
+                {pagetype === 'twitter' && (
+                  <TwitterAvatar
+                    avatar={
+                      item.twitterName
+                        ? `https://twitter-avatar.now.sh/${item.twitterName}`
+                        : UserIcon
+                    }
+                  />
+                )}
+                <Heading>{item.title}</Heading>
+                <Paragraph>3 days ago</Paragraph>
+              </StyledHeader>
+              <StyledParagraph>
+                {item.description}
+                {pagetype === 'article' && (
+                  <StyledParagraphInfo
+                    target="_blank"
+                    href={item.articleUrl}
+                    as="a"
+                  >
+                    Go to article
+                  </StyledParagraphInfo>
+                )}
+              </StyledParagraph>
+              <WrapperButtons>
+                <Button as={Link} to={`/${pagetype}`}>
+                  Close / Saved
+                </Button>
+                <StyledButton>Edit</StyledButton>
+              </WrapperButtons>
+            </StyledWrapper>
+            <EditForm />
+          </StyledOuterWrapper>
         </UserPageTemplate>
       </>
     );
