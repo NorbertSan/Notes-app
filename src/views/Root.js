@@ -5,23 +5,27 @@ import Article from 'views/Article';
 import Note from 'views/Note';
 import DetailsPage from 'templates/DetailsPage';
 import MainTemplate from 'templates/MainTemplate';
+import store from 'store';
+import { Provider } from 'react-redux';
 
 const Root = () => (
-  <BrowserRouter>
-    <MainTemplate>
-      <Switch>
-        <Route exact path="/" component={Note}>
-          <Redirect to="/note" />
-        </Route>
-        <Route exact path="/note" component={Note} />
-        <Route path="/note/:id" component={DetailsPage} />
-        <Route exact path="/twitter" component={Twitter} />
-        <Route path="/twitter/:id" component={DetailsPage} />
-        <Route exact path="/article" component={Article} />
-        <Route path="/article/:id" component={DetailsPage} />
-      </Switch>
-    </MainTemplate>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <MainTemplate>
+        <Switch>
+          <Route exact path="/" component={Note}>
+            <Redirect to="/note" />
+          </Route>
+          <Route exact path="/note" component={Note} />
+          <Route path="/note/:id" component={DetailsPage} />
+          <Route exact path="/twitter" component={Twitter} />
+          <Route path="/twitter/:id" component={DetailsPage} />
+          <Route exact path="/article" component={Article} />
+          <Route path="/article/:id" component={DetailsPage} />
+        </Switch>
+      </MainTemplate>
+    </BrowserRouter>
+  </Provider>
 );
 
 export default Root;

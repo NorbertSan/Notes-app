@@ -2,39 +2,13 @@ import React from 'react';
 import UserPageTemplate from 'templates/UserPageTemplate';
 import Card from 'components/organisms/Card/Card';
 import GridTemplate from 'templates/GridTemplate';
+import { connect } from 'react-redux';
 
-const Notes = [
-  {
-    title: 'hello roman',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 1,
-  },
-  {
-    title: 'hello roman',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 2,
-  },
-  {
-    title: 'hello roman',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 3,
-  },
-  {
-    title: 'hello roman',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 4,
-  },
-];
-
-const Note = () => (
+const Note = ({ notes }) => (
   <>
     <UserPageTemplate>
       <GridTemplate>
-        {Notes.map(item => (
+        {notes.map(item => (
           <Card
             title={item.title}
             description={item.description}
@@ -47,4 +21,6 @@ const Note = () => (
   </>
 );
 
-export default Note;
+const mapStateToProps = ({ notes }) => ({ notes });
+
+export default connect(mapStateToProps)(Note);

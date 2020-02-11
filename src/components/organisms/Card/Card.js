@@ -9,6 +9,7 @@ import TwitterIcon from 'assets/icons/twitter.svg';
 import ClickIcon from 'assets/icons/click.svg';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { removeItem } from 'actions';
 
 const StyledWrapper = styled.div`
   min-height: 360px;

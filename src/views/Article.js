@@ -2,43 +2,13 @@ import React from 'react';
 import UserPageTemplate from 'templates/UserPageTemplate';
 import Card from 'components/organisms/Card/Card';
 import GridTemplate from 'templates/GridTemplate';
+import { connect } from 'react-redux';
 
-const Articles = [
-  {
-    title: 'hello roman',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 1,
-    articleUrl: 'https://google.com',
-  },
-  {
-    title: 'hello roman',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 2,
-    articleUrl: 'https://google.com',
-  },
-  {
-    title: 'hello roman',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 3,
-    articleUrl: 'https://google.com',
-  },
-  {
-    title: 'hello roman',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 4,
-    articleUrl: 'https://google.com',
-  },
-];
-
-const Article = () => (
+const Article = ({ articles }) => (
   <>
     <UserPageTemplate>
       <GridTemplate>
-        {Articles.map(item => (
+        {articles.map(item => (
           <Card
             title={item.title}
             description={item.description}
@@ -52,4 +22,6 @@ const Article = () => (
   </>
 );
 
-export default Article;
+const mapStateToProps = ({ articles }) => ({ articles });
+
+export default connect(mapStateToProps)(Article);

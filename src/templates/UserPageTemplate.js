@@ -15,7 +15,7 @@ const StyledAddIcon = styled(ButtonIcon)`
   right: 25px;
   bottom: 25px;
   cursor: pointer;
-  background-color: grey;
+  background-color: ${({ color, theme }) => theme[color]};
   z-index: 999;
 `;
 

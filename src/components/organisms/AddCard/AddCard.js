@@ -43,12 +43,6 @@ const StyledHeading = styled(Heading)`
 const StyledInput = styled(Input)`
   width: 75%;
 `;
-const WrapperRadio = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 10px 0;
-`;
 
 const StyledButton = styled(Button)`
   background-color: ${({ color, theme }) => theme[color]};

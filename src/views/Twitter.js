@@ -2,50 +2,13 @@ import React from 'react';
 import UserPageTemplate from 'templates/UserPageTemplate';
 import GridTemplate from 'templates/GridTemplate';
 import Card from 'components/organisms/Card/Card';
+import { connect } from 'react-redux';
 
-const Twitters = [
-  {
-    title: 'hello roman',
-    twitterName: 'hello_roman',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 1,
-  },
-  {
-    title: 'hello roman',
-    twitterName: 'hello_roman',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 2,
-  },
-  {
-    title: 'hello roman',
-    twitterName: 'hello_roman',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 3,
-  },
-  {
-    title: 'hello roman',
-    twitterName: 'hello_roman',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 4,
-  },
-  {
-    title: 'hello roman',
-    twitterName: 'hello_roman',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi iste quaerat laudantium, natus mollitia cum repellendus esse? Vitae quisquam optio placeat reiciendis, atque aliquam perspiciatis! Praesentium minima nesciunt hic.',
-    id: 5,
-  },
-];
-
-const Twitter = () => (
+const Twitter = ({ twitters }) => (
   <>
     <UserPageTemplate>
       <GridTemplate>
-        {Twitters.map(item => (
+        {twitters.map(item => (
           <Card
             title={item.title}
             description={item.description}
@@ -59,4 +22,6 @@ const Twitter = () => (
   </>
 );
 
-export default Twitter;
+const mapStateToProps = ({ twitters }) => ({ twitters });
+
+export default connect(mapStateToProps)(Twitter);
