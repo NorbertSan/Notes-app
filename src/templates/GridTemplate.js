@@ -28,18 +28,19 @@ const StyledForm = styled.form`
 class GridTemplate extends React.Component {
   componentDidMount() {
     setTimeout(() => {
-      this.props.searchItemsAction(this.props.pagetype, '');
+      this.props.searchItems(this.props.pagetype, '');
     }, 0);
   }
+
   render() {
-    const { children, pagetype, value, searchItemsAction } = this.props;
+    const { children, pagetype, value, searchItems } = this.props;
     return (
       <>
         <StyledForm>
           <StyleInput
             placeholder={`search ${pagetype} by title`}
             search
-            onChange={e => searchItemsAction(pagetype, e.target.value)}
+            onChange={e => searchItems(pagetype, e.target.value)}
             value={value}
           />
         </StyledForm>
@@ -50,7 +51,7 @@ class GridTemplate extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  searchItemsAction: (pagetype, value) =>
+  searchItems: (pagetype, value) =>
     dispatch(searchItemsAction(pagetype, value)),
 });
 

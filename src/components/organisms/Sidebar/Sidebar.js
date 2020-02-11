@@ -4,10 +4,10 @@ import LogoutIcon from 'assets/icons/logout.svg';
 import BulbIcon from 'assets/icons/bulb.svg';
 import EditIcon from 'assets/icons/edit.svg';
 import TwitterIcon from 'assets/icons/twitter.svg';
-import LogoIcon from 'assets/icons/logo.svg';
 import ButtonIcon from 'components/atoms/ButtonIcon/ButtonIcon';
 import { NavLink } from 'react-router-dom';
 import withContext from 'hoc/withContext';
+import Heading from 'components/atoms/Heading/Heading';
 
 const StyledWrapper = styled.div`
   height: 100vh;
@@ -20,12 +20,6 @@ const StyledWrapper = styled.div`
   grid-template-rows: 2fr 3fr 3fr;
   justify-items: center;
   padding: 20px 0;
-`;
-
-const StyledLogo = styled.div`
-  background: url(${LogoIcon}) no-repeat center center / cover;
-  width: 80px;
-  height: 80px;
 `;
 
 const StyledIcons = styled.div`
@@ -41,7 +35,9 @@ const StyledLogoutIcon = styled(ButtonIcon)`
 
 const Sidebar = ({ pagetype }) => (
   <StyledWrapper pagetype={pagetype}>
-    <StyledLogo as={NavLink} to="/" />
+    <Heading as={NavLink} to="/">
+      LOGO
+    </Heading>
     <StyledIcons>
       <ButtonIcon
         as={NavLink}

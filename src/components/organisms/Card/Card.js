@@ -10,7 +10,10 @@ import ClickIcon from 'assets/icons/click.svg';
 import UserIcon from 'assets/icons/user.svg';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import { removeItem as removeItemAction } from 'actions';
+import {
+  removeItem as removeItemAction,
+  searchItems as searchItemsAction,
+} from 'actions';
 import { connect } from 'react-redux';
 
 const StyledWrapper = styled.div`
@@ -93,6 +96,8 @@ const LinkAvatar = styled.a`
 
 const StyledRemoveButton = styled(Button)`
   transition: all 0.3s ease;
+  position: 9999;
+  position: relative;
   &:hover {
     transform: scale(1.05);
     opacity: 0.5;
@@ -149,6 +154,7 @@ class Card extends React.Component {
       twitterName,
       id,
       removeItem,
+      searchItems,
     } = this.props;
 
     if (this.state.redirect) {
@@ -180,7 +186,11 @@ class Card extends React.Component {
         <StyledContent>
           <Paragraph>{description.substr(0, 150)}...</Paragraph>
           <StyledRemoveButton
-            onClick={() => removeItem(pagetype, id)}
+            onClick={e => {
+              removeItem(pagetype, id);
+              searchItems(pagetype, '');
+              e.stopPropagation();
+            }}
             secondary
           >
             Remove
@@ -197,6 +207,8 @@ Card.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   removeItem: (itemType, id) => dispatch(removeItemAction(itemType, id)),
+  searchItems: (pagetype, value) =>
+    dispatch(searchItemsAction(pagetype, value)),
 });
 
 Card.propTypes = {
